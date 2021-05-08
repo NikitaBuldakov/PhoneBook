@@ -21,6 +21,7 @@ PROJECT STRUCTURE:
 DB consists of 2 tables:
 - Users
 - PhoneBook
+
 Users table stores information about their name and phone number. 
 PhoneBook table stores information about all users phone records.
 User has no foreign keys in any way.
