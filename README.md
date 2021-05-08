@@ -9,8 +9,9 @@ To run this app you will need:
 TO RUN THE APP:
 - Run the server after configuration process;
 
-Path to the actual code: PhoneBook/phone_book/src/main/java/org/buldakov/PhoneBook/
-Path to JUnit tests: PhoneBook/phone_book/src/test/java/org/buldakov/PhoneBook/
+- Path to the actual code: PhoneBook/phone_book/src/main/java/org/buldakov/PhoneBook/
+
+- Path to JUnit tests: PhoneBook/phone_book/src/test/java/org/buldakov/PhoneBook/
 
 
 Project structure:
