@@ -23,8 +23,11 @@ DB consists of 2 tables:
 - PhoneBook
 
 Users table stores information about their name and phone number. 
+
 PhoneBook table stores information about all users phone records.
+
 User has no foreign keys in any way.
+
 PhoneBook has a foreign key to the User table and has a 1: n relationship, and when an entry in User table is deleted, the dependent entries in the PhoneBook table are cascaded.
 
 
