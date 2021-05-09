@@ -44,4 +44,9 @@ public class PhoneBookDAO {
     public void delete(int id) {
         jdbcTemplate.update("DELETE FROM phone_book WHERE book_id=?", id);
     }
+
+    public PhoneBook getLast() {
+        return jdbcTemplate.query("SELECT * FROM phone_book ORDER BY book_id DESC LIMIT 1", new PhoneBookMapper())
+                .stream().findAny().orElse(null);
+    }
 }

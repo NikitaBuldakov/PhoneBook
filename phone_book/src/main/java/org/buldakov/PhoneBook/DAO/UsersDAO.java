@@ -46,4 +46,9 @@ public class UsersDAO {
     public void delete(int id) {
         jdbcTemplate.update("DELETE FROM \"User\" WHERE user_id=?", id);
     }
+
+    public Users getLast() {
+        return jdbcTemplate.query("SELECT * FROM \"User\" ORDER BY user_id DESC LIMIT 1", new UsersMapper())
+                .stream().findAny().orElse(null);
+    }
 }

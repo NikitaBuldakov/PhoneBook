@@ -1,6 +1,7 @@
 package org.buldakov.PhoneBook.Controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.buldakov.PhoneBook.DAO.PhoneBookDAO;
 import org.buldakov.PhoneBook.models.PhoneBook;
 import org.junit.Before;
 import org.junit.Test;
@@ -37,6 +38,9 @@ public class PhoneBookSettingsTest {
 
     @Autowired
     private WebApplicationContext wac;
+
+    @Autowired
+    private PhoneBookDAO phoneBookDAO;
 
     @Before
     public void setUp(){
@@ -82,7 +86,8 @@ public class PhoneBookSettingsTest {
 
     @Test
     public void updateNote() throws Exception{
-        PhoneBook phoneBook = new PhoneBook(11, "Vasiliy Ivanovashenko", 4,"89333456281");
+        PhoneBook phoneBook = phoneBookDAO.getLast();
+        phoneBook = new PhoneBook(phoneBook.getId(), "Vasiliy Ivanovashenko", 4,"89333456281");
         mockMvc.perform( MockMvcRequestBuilders
                 .post("/PhoneBooks/Update")
                 .content(objectMapper.writeValueAsString(phoneBook))
@@ -95,7 +100,7 @@ public class PhoneBookSettingsTest {
 
     @Test
     public void deleteNote() throws Exception {
-        PhoneBook phoneBook = new PhoneBook(11, "Vasiliy Ivanov", 4,"89333456279");
+        PhoneBook phoneBook = phoneBookDAO.getLast();
         mockMvc.perform( MockMvcRequestBuilders
                 .post("/PhoneBooks/Delete")
                 .content(objectMapper.writeValueAsString(phoneBook))

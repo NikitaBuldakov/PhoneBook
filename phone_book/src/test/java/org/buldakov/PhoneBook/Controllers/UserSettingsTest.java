@@ -1,6 +1,7 @@
 package org.buldakov.PhoneBook.Controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.buldakov.PhoneBook.DAO.UsersDAO;
 import org.buldakov.PhoneBook.models.Users;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,6 +33,9 @@ public class UserSettingsTest {
 
     @Autowired
     ObjectMapper objectMapper;
+
+    @Autowired
+    private UsersDAO usersDAO;
 
     @Autowired
     private WebApplicationContext wac;
@@ -78,7 +82,8 @@ public class UserSettingsTest {
 
     @Test
     public void updateUser() throws Exception{
-        Users users = new Users(6, "Andrey Nikitin Loh","89992178195");
+        Users users = usersDAO.getLast();
+        users = new Users(users.getId(), "Andrey Nikitin U","89992178195");
         mockMvc.perform( MockMvcRequestBuilders
                 .post("/Users/Update")
                 .content(objectMapper.writeValueAsString(users))
@@ -90,7 +95,7 @@ public class UserSettingsTest {
 
     @Test
     public void deleteUser() throws Exception{
-        Users users = new Users(5, "Andrey Nikitin","89992178195");
+        Users users = usersDAO.getLast();
         mockMvc.perform( MockMvcRequestBuilders
                 .post("/Users/Delete")
                 .content(objectMapper.writeValueAsString(users))
