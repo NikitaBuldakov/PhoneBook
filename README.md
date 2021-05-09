@@ -15,6 +15,7 @@ TO RUN THE APP:
 RELEVANT PATHS:
 - Path to the actual code: PhoneBook/phone_book/src/main/java/org/buldakov/PhoneBook/
 - Path to JUnit tests: PhoneBook/phone_book/src/test/java/org/buldakov/PhoneBook/
+- Path to DB dump: PhoneBook/phone_book/src/main/resources/DataBaseDump
 
 
 PROJECT STRUCTURE:
