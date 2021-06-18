@@ -43,3 +43,4 @@ TECHNOLOGIES USED IN THE DEVELOPMENT:
   - PostgreSQL (version 12) for database;
   - JUnit (version 4) for tests;
 
+ 
