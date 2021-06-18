@@ -42,4 +42,4 @@ TECHNOLOGIES USED IN THE DEVELOPMENT:
   - TomCat (version 9.0.43) for server deployment;
   - PostgreSQL (version 12) for database;
   - JUnit (version 4) for tests;
- 
+
