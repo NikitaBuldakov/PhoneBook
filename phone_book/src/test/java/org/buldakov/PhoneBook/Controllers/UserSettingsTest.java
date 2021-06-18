@@ -115,4 +115,4 @@ public class UserSettingsTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$").isNotEmpty())
                 .andDo(MockMvcResultHandlers.print());
     }
-}
+} 
