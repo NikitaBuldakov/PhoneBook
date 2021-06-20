@@ -1,0 +1,218 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 13.1
+-- Dumped by pg_dump version 13.1
+
+-- Started on 2021-05-09 14:00:03
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 201 (class 1259 OID 16606)
+-- Name: User; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."User" (
+    user_id integer NOT NULL,
+    user_name character varying NOT NULL,
+    phone character varying NOT NULL
+);
+
+
+ALTER TABLE public."User" OWNER TO postgres;
+
+--
+-- TOC entry 200 (class 1259 OID 16604)
+-- Name: User_user_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."User_user_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."User_user_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 3007 (class 0 OID 0)
+-- Dependencies: 200
+-- Name: User_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."User_user_id_seq" OWNED BY public."User".user_id;
+
+
+--
+-- TOC entry 203 (class 1259 OID 16619)
+-- Name: phone_book; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.phone_book (
+    book_id integer NOT NULL,
+    user_id integer NOT NULL,
+    user_name character varying NOT NULL,
+    user_phone character varying NOT NULL
+);
+
+
+ALTER TABLE public.phone_book OWNER TO postgres;
+
+--
+-- TOC entry 202 (class 1259 OID 16617)
+-- Name: phone_book_book_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.phone_book_book_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.phone_book_book_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3008 (class 0 OID 0)
+-- Dependencies: 202
+-- Name: phone_book_book_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.phone_book_book_id_seq OWNED BY public.phone_book.book_id;
+
+
+--
+-- TOC entry 2858 (class 2604 OID 16609)
+-- Name: User user_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."User" ALTER COLUMN user_id SET DEFAULT nextval('public."User_user_id_seq"'::regclass);
+
+
+--
+-- TOC entry 2859 (class 2604 OID 16622)
+-- Name: phone_book book_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.phone_book ALTER COLUMN book_id SET DEFAULT nextval('public.phone_book_book_id_seq'::regclass);
+
+
+--
+-- TOC entry 2999 (class 0 OID 16606)
+-- Dependencies: 201
+-- Data for Name: User; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."User" (user_id, user_name, phone) FROM stdin;
+4	Nikita Buldakov	89533553049
+8	Andrey Nikitin	89992178195
+\.
+
+
+--
+-- TOC entry 3001 (class 0 OID 16619)
+-- Dependencies: 203
+-- Data for Name: phone_book; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.phone_book (book_id, user_id, user_name, user_phone) FROM stdin;
+6	4	Nikita Buldakov	89533553049
+14	4	Vasiliy Ivanovashenko	89333456281
+\.
+
+
+--
+-- TOC entry 3009 (class 0 OID 0)
+-- Dependencies: 200
+-- Name: User_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."User_user_id_seq"', 8, true);
+
+
+--
+-- TOC entry 3010 (class 0 OID 0)
+-- Dependencies: 202
+-- Name: phone_book_book_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.phone_book_book_id_seq', 14, true);
+
+
+--
+-- TOC entry 2866 (class 2606 OID 16689)
+-- Name: phone_book phone_book_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.phone_book
+    ADD CONSTRAINT phone_book_pk PRIMARY KEY (book_id);
+
+
+--
+-- TOC entry 2862 (class 2606 OID 16616)
+-- Name: User user_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."User"
+    ADD CONSTRAINT user_pk PRIMARY KEY (user_id);
+
+
+--
+-- TOC entry 2864 (class 1259 OID 16631)
+-- Name: phone_book_book_id_uindex; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE UNIQUE INDEX phone_book_book_id_uindex ON public.phone_book USING btree (book_id);
+
+
+--
+-- TOC entry 2860 (class 1259 OID 16667)
+-- Name: user_phone_uindex; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE UNIQUE INDEX user_phone_uindex ON public."User" USING btree (phone);
+
+
+--
+-- TOC entry 2863 (class 1259 OID 16614)
+-- Name: user_user_id_uindex; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE UNIQUE INDEX user_user_id_uindex ON public."User" USING btree (user_id);
+
+
+--
+-- TOC entry 2867 (class 2606 OID 16677)
+-- Name: phone_book phone_book_user_user_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.phone_book
+    ADD CONSTRAINT phone_book_user_user_id_fk FOREIGN KEY (user_id) REFERENCES public."User"(user_id) ON UPDATE RESTRICT ON DELETE CASCADE;
+
+
+-- Completed on 2021-05-09 14:00:03
+
+--
+-- PostgreSQL database dump complete
+--
+
