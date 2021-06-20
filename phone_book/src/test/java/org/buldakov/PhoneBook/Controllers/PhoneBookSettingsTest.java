@@ -48,6 +48,7 @@ public class PhoneBookSettingsTest {
     }
 
     @Test
+    @Ignore
     public void sendList() throws Exception{
 
         mockMvc.perform(MockMvcRequestBuilders
@@ -61,6 +62,7 @@ public class PhoneBookSettingsTest {
     }
 
     @Test
+    @Ignore
     public void sendNote() throws Exception{
         mockMvc.perform(MockMvcRequestBuilders
                 .get("/PhoneBooks/getOne?book_id=6")
@@ -72,6 +74,7 @@ public class PhoneBookSettingsTest {
     }
 
     @Test
+    @Ignore
     public void saveNote() throws Exception{
         PhoneBook phoneBook = new PhoneBook(1, "Vasiliy Ivanov", 4,"89333456279");
         mockMvc.perform( MockMvcRequestBuilders
@@ -85,6 +88,7 @@ public class PhoneBookSettingsTest {
     }
 
     @Test
+    @Ignore
     public void updateNote() throws Exception{
         PhoneBook phoneBook = phoneBookDAO.getLast();
         phoneBook = new PhoneBook(phoneBook.getId(), "Vasiliy Ivanovashenko", 4,"89333456281");
@@ -99,6 +103,7 @@ public class PhoneBookSettingsTest {
     }
 
     @Test
+    @Ignore
     public void deleteNote() throws Exception {
         PhoneBook phoneBook = phoneBookDAO.getLast();
         mockMvc.perform( MockMvcRequestBuilders
@@ -111,6 +116,7 @@ public class PhoneBookSettingsTest {
     }
 
     @Test
+    @Ignore
     public void sendNotebyPhone()throws Exception {
         PhoneBook phoneBook = new PhoneBook(6, "Nikita Buldakov", 4,"89533553049");
         mockMvc.perform( MockMvcRequestBuilders
